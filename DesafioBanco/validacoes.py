@@ -8,7 +8,7 @@ def validar_nome(nome):
         return False
 
     return True
-
+'''
 def tranformar_espaco_underline(nome, tipo):
 
     copia_nome = '';
@@ -30,7 +30,7 @@ def tranformar_espaco_underline(nome, tipo):
         return None
     
     return copia_nome.upper()
-
+'''
 def validar_senha(senha):
 
     if(len(senha) < 5 or len(senha) > 12):
@@ -85,7 +85,7 @@ def validar_email(email):
     lista_fim_email = email.split('.com')
     
 
-    if(len(email) <=24 and len(lista_fim_email) == 2):
+    if(len(email) <=24 and len(lista_fim_email) == 2 and lista_fim_email[1] == ''):
 
         for caracter in copia_email:
             if(caracter == '@'):
@@ -98,5 +98,9 @@ def validar_email(email):
 
     return False
 
+def validar_saldo_inteiro(saldo):
 
+    if(saldo.isnumeric()):
+        return True
     
+    return False

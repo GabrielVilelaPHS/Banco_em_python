@@ -1,5 +1,5 @@
 import os
-from arquivo_alterar_informacoes import extrair_dados
+from arquivo_alterar_informacoes import extrair_dados, alterar_campo_nome, alterar_campo_senha, alterar_campo_aniversario, alterar_campo_email
 
 def alterar_informacoes(cpf, diretorio):
 
@@ -12,16 +12,18 @@ def alterar_informacoes(cpf, diretorio):
 
         print('SEUS DADOS PESSOAIS: \n')
         print(f"Nome: {dicionario['Nome']}")
-        print(f"CPF: {cpf}")
+        print(f"SENHA: {dicionario['Senha']}")
         print(f"ANIVERSARIO: {dicionario['Aniversario']}")
         print(f"EMAIL: {dicionario['Email']}\n")
 
+
         print('\nVOCE DESEJA ALTERAR...\n')
         print(f'(01) - NOME ')
-        print(f'(02) - CPF ')
+        print(f'(02) - SENHA ')
         print(f'(03) - ANIVERSARIO ')
         print(f'(04) - EMAIL ')
-        print(f'(05) - TUDO MENOS O CPF')
+        print(f'(05) - VOLTAR')
+
 
         while(True):
             try:
@@ -32,33 +34,31 @@ def alterar_informacoes(cpf, diretorio):
             
             finally:
             
-                print(resposta)
-                if(resposta >= 1 and resposta <=5 ):
-                    break
-                else:
+                if(resposta < 1 and resposta >5 ):
                     print("NUMERO FORA DO INTERVALO")
                     os.system('pause')
                     continue
+                
+            break
+    
+        if(resposta == 5):
+            break
 
-    controle_logico(resposta, cpf, diretorio)
+        controle_logico(resposta, cpf, diretorio)
+        print("\nalterção feita com sucesso\n")
+        os.system('pause')
 
 
-def controle_logico(funcao, cpf, diretorio):
+def controle_logico(resposta, cpf, diretorio):
 
-    switch(funcao){
-        case 1:
-            altera_campo('Nome', cpf, diretorio)
-            break
-        case 2:
-            renomear_pasta(cpf, diretorio)
-            break
-        case 3:
-            altera_campo('Aniversario', cpf, diretorio)
-            break
-        case 4:
-            altera_campo('Email', cpf, diretorio)
-            break
-        case 5:
-            altera_campo('Tudo', cpf, diretorio)
-            break
-    }
+    if(resposta == 1):
+        alterar_campo_nome(cpf, diretorio)
+
+    elif(resposta == 2):
+        alterar_campo_senha(cpf, diretorio)
+
+    elif(resposta == 3):
+        alterar_campo_aniversario(cpf, diretorio)
+
+    elif(resposta == 4):
+        alterar_campo_email(cpf, diretorio)

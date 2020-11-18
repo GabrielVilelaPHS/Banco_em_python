@@ -1,4 +1,5 @@
 import os
+import sys
 from tela_alterar_informacoes import alterar_informacoes
 
 def tela_configuracoes(cpf, diretorio):
@@ -8,25 +9,27 @@ def tela_configuracoes(cpf, diretorio):
         print("O QUE VOCÊ DESEJA:")
         print("(01) - ALTERAR INFORMAÇÕES PESSOAIS")
         print("(02) - SAIR DA CONTA")
+        print("(03) - VOLTAR")
 
 
-        resposta = input("\nRESPOSTA: ")
+        while(True):
+            try:
+                resposta = int (input("\nRESPOSTA: "))
 
-        if(resposta.isnumeric()):
-
-            resposta = int (resposta)
-
-            if(resposta == 1 or resposta == 2):
-                controle_main(resposta, cpf, diretorio)
-                break
-            else:
-                print("\nOPÇÃO NÃO EXISTENTE")
-                os.system('pause')
-
-        else:
-            print('ENTRADA INVÁLIDA, TENTE NOVAMENTE')
-            os.system('pause')
-            os.cls()
+            except (ValueError, AttributeError):
+                print('DIGITE UM NUMERO INTEIRO')
+            
+            finally:
+            
+                if(resposta < 1 and resposta >3 ):
+                    print("NUMERO FORA DO INTERVALO")
+                    os.system('pause')
+                    continue
+                
+            break
+        
+        if(resposta == 3):
+            break
 
 
 def controle_main(resposta, cpf, diretorio):
@@ -35,5 +38,6 @@ def controle_main(resposta, cpf, diretorio):
         alterar_informacoes(cpf, diretorio)
         
     elif (resposta == 2):
-        exit()
+        sys.exit()
+        os.system('pause')
     

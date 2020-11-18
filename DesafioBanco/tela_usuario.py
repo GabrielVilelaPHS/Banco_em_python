@@ -11,6 +11,7 @@ def tela_usuario(cpf, diretorio):
         print("(01) - OPÇÕES BANCARIAS")
         print("(02) - CONFIGURAÇÕES DO USUÁRIO")
 
+
         resposta = input("\nRESPOSTA: ")
 
         if(resposta.isnumeric()):

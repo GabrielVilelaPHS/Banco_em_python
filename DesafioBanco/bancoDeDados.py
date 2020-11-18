@@ -2,11 +2,11 @@ import os
 
 def cadastrar_usuario(diretorio, dados):
 
-    nome_arquivo = dados['cpf'] + ".txt"
-    caminho = f"{diretorio}\\{dados['cpf']}.txt"
+    nome_arquivo = dados['Cpf'] + ".txt"
+    caminho = f"{diretorio}\\{dados['Cpf']}.txt"
     arquivo = open(caminho,'w')    
 
-    conteudo_arquivo = f"Nome:{dados['nome']}\nSenha:{dados['senha']}\nAniversario:{dados['aniversario']}\nEmail:{dados['email']}\nSaldo:{dados['saldo']}\n"
+    conteudo_arquivo = f"Nome:{dados['Nome']}\nSenha:{dados['Senha']}\nAniversario:{dados['Aniversario']}\nEmail:{dados['Email']}\nSaldo:{dados['Saldo']}\n"
 
     arquivo.write(conteudo_arquivo)
 

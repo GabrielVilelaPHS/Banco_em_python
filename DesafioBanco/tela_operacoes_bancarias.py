@@ -1,5 +1,5 @@
 import os
-from arquivo_operacoes_bancarias import saque, deposito, transferencia, extrato
+from arquivo_operacoes_bancarias import deposito, saque, transferencia, extrato
 
 def tela_operacoes_bancarias(cpf, diretorio):
     while(True):
@@ -10,33 +10,49 @@ def tela_operacoes_bancarias(cpf, diretorio):
         print("(02) - SAQUE")
         print("(03) - TRANFERÊNCIA")
         print("(04) - EXTRATO")
+        print("(05) - VOLTAR")
 
-        resposta = input("\nRESPOSTA: ")
+        while(True):
+            try:
+                resposta = int (input("\nRESPOSTA: "))
 
-        if(resposta.isnumeric()):
+            except (ValueError, AttributeError):
+                print('DIGITE UM NUMERO INTEIRO')
+            
+            finally:
+            
+                if(resposta < 1 and resposta >5 ):
+                    print("NUMERO FORA DO INTERVALO")
+                    continue
+            break
+    
+        if(resposta == 5):
+            break
 
-            resposta = int (resposta)
-
-            if(resposta >= 1 and resposta <= 4):
-                controle_main(resposta, cpf, diretorio)
-                break
-            else:
-                print("\nOPÇÃO NÃO EXISTENTE")
-                os.system('pause')
-
-        else:
-            print('ENTRADA INVÁLIDA, TENTE NOVAMENTE')
-            os.system('pause')
-            os.cls()
+        controle_main(resposta, cpf, diretorio)
 
 
 def controle_main(resposta, cpf, diretorio):
 
     if (resposta == 1):
-        deposito(cpf, diretorio)
+        confirmacao = deposito(cpf, diretorio) 
+
+        if(confirmacao == True):
+            print("...SAQUE FEITO COM SUCESSO")
+        elif(confirmacao == False):
+            print("...DESCULPE, ALGO DE ERRADO, TENTE MAIS TARDE")
         
+        os.system('pause')
+    
     elif (resposta == 2):
-        saque(cpf, diretorio)
+        confirmacao = saque(cpf, diretorio)
+        
+        if(confirmacao == True):
+            print("...SAQUE FEITO COM SUCESSO")
+        elif(confirmacao == False):
+            print("...DESCULPE, ALGO DEU ERRADO...\n...VERIFIQUE SEU SALDO PARA VER SE TEM SALDO SUFICIENTE...")
+        
+        os.system('pause')
     
     elif (resposta == 3):
         transferencia(cpf, diretorio)
