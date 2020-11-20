@@ -37,8 +37,8 @@ def controle_main(resposta, cpf, diretorio):
     if (resposta == 1):
         confirmacao = deposito(cpf, diretorio) 
 
-        if(confirmacao == True):
-            print("...SAQUE FEITO COM SUCESSO")
+        if(confirmacao.isnumeric() ):
+            print("...DEPOSITO FEITO COM SUCESSO")
         elif(confirmacao == False):
             print("...DESCULPE, ALGO DE ERRADO, TENTE MAIS TARDE")
         
@@ -47,7 +47,7 @@ def controle_main(resposta, cpf, diretorio):
     elif (resposta == 2):
         confirmacao = saque(cpf, diretorio)
         
-        if(confirmacao == True):
+        if(confirmacao.isnumeric()):
             print("...SAQUE FEITO COM SUCESSO")
         elif(confirmacao == False):
             print("...DESCULPE, ALGO DEU ERRADO...\n...VERIFIQUE SEU SALDO PARA VER SE TEM SALDO SUFICIENTE...")
@@ -55,7 +55,25 @@ def controle_main(resposta, cpf, diretorio):
         os.system('pause')
     
     elif (resposta == 3):
-        transferencia(cpf, diretorio)
+        confirmacao = transferencia(cpf, diretorio)
+
+        if(confirmacao == True):
+            print("\n...TRANFERÊNCIA FEITO COM SUCESSO")
+        elif(confirmacao == False):
+            print("\n...DESCULPE, ALGO DEU ERRADO...\n...VERIFIQUE OS DADOS DO RECEPTOR...\n")
+        
+        os.system('pause')
 
     elif (resposta == 4):
-        extrato(cpf, diretorio)
+        conteudo = extrato(cpf)
+
+        if(extrato != False):
+            os.system('cls')
+            if(len(conteudo) != 0):
+                print (conteudo)
+            else:
+                print("SEM HISTORICO BANCÁRIO\n")
+        else:
+            print("\n...DESCULPE, ALGO DEU ERRADO...")
+
+        os.system('pause')

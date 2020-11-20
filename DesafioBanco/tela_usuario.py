@@ -12,23 +12,24 @@ def tela_usuario(cpf, diretorio):
         print("(02) - CONFIGURAÇÕES DO USUÁRIO")
 
 
-        resposta = input("\nRESPOSTA: ")
+        while(True):
+            try:
+                resposta = int (input("\nRESPOSTA: "))
 
-        if(resposta.isnumeric()):
+            except (ValueError, AttributeError):
+                print('DIGITE UM NUMERO INTEIRO')
+                os.system('pause')
+                continue
 
-            resposta = int (resposta)
+            boleano = str (resposta)
 
-            if(resposta == 1 or resposta == 2):
-                controle_main(resposta, cpf, diretorio)
-            else:
-                print("\nOPÇÃO NÃO EXISTENTE")
+            if(boleano.isnumeric() and resposta != 1 and resposta != 2 ):
+                print("NUMERO FORA DO INTERVALO")
+                os.system('pause')
+                continue
+            break
 
-        else:
-            print('ENTRADA INVÁLIDA, TENTE NOVAMENTE')
-            os.system('pause')
-            os.cls()
-            continue
-
+        controle_main(resposta, cpf, diretorio)
 
 def controle_main(resposta, cpf, diretorio):
 
@@ -36,5 +37,5 @@ def controle_main(resposta, cpf, diretorio):
         tela_operacoes_bancarias(cpf, diretorio)
         
 
-    if (resposta == 2):
+    elif (resposta == 2):
         tela_configuracoes(cpf, diretorio)

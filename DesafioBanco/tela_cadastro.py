@@ -10,35 +10,35 @@ def tela_cadastro(diretorio):
 
     print('---------CADASTRO-----------\n')
 
-    print('OBS: DIGITE "sair" A QUALQUE MOMENTO PARA CANCELAR O CADASTRO\n')
+    print('OBS: DIGITE "voltar" A QUALQUE MOMENTO PARA CANCELAR O CADASTRO\n')
 
     nome = capturar_campo_nome()
     
-    if(nome == 'sair'):
+    if(nome.lower() == 'voltar'):
         return
 
 
     senha = capturar_campo_senha()
 
-    if(senha == 'sair'):
+    if(senha == 'voltar'):
         return 
 
 
     aniversario = capturar_campo_aniversario()
 
-    if(aniversario == 'sair'):
+    if(aniversario == 'voltar'):
         return
 
 
     cpf = capturar_campo_cpf(diretorio)
 
-    if(cpf == 'sair'):
+    if(cpf == 'voltar'):
         return 
 
 
     email = capturar_campo_email(diretorio)
 
-    if(email == 'sair'):
+    if(email == 'voltar'):
         return
 
     dados_cadastrais['Nome'] = nome;

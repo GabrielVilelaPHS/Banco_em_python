@@ -30,6 +30,10 @@ def tela_configuracoes(cpf, diretorio):
         
         if(resposta == 3):
             break
+        
+        controle_main(resposta, cpf, diretorio)
+
+        #os._exit(0)
 
 
 def controle_main(resposta, cpf, diretorio):
@@ -38,6 +42,5 @@ def controle_main(resposta, cpf, diretorio):
         alterar_informacoes(cpf, diretorio)
         
     elif (resposta == 2):
-        sys.exit()
-        os.system('pause')
+        exit(0)
     

@@ -1,5 +1,3 @@
-#cd Desktop/Python/DesafioBanco/
-#python main.py
 from inicializacao import gerando_diretorio_com_pasta
 from tela_login import tela_login
 from tela_cadastro import tela_cadastro
@@ -11,8 +9,11 @@ def controle_main(tela_inicio, diretorio):
         tela_login(diretorio)
         pass
 
-    if (tela_inicio == 2):
+    elif (tela_inicio == 2):
         tela_cadastro(diretorio)
+
+    elif (tela_inicio == 3):
+        exit(0)
 
 banco_de_dados = "usuarios"
 diretorio_banco_de_dados = gerando_diretorio_com_pasta(banco_de_dados)
@@ -28,26 +29,24 @@ while(sessao == 0):
         print("(02) - FAZER CADASTRO")
         print("(03) - SAIR")
 
-        resposta_tela_inicio = input("\nRESPOSTA: ")
+        while(True):
+            try:
+                resposta = int (input("\nRESPOSTA: "))
 
-        if(resposta_tela_inicio.isnumeric()):
+            except (ValueError, AttributeError):
+                print('DIGITE UM NUMERO INTEIRO')
+                os.system('pause')
+                continue
 
-            resposta_tela_inicio = int (resposta_tela_inicio)
+            boleano = str (resposta)
 
-            if(resposta_tela_inicio == 1 or resposta_tela_inicio == 2):
-                controle_main(resposta_tela_inicio, diretorio_banco_de_dados)
+            if(boleano.isnumeric() and (resposta < 1 or resposta > 3 )):
+                print("NUMERO FORA DO INTERVALO")
+                os.system('pause')
+                continue
+            break
 
-        elif(resposta_tela_inicio == '3'):
-            os.cls()
-            print('OBRIGADO POR CONFIAR NO NOSSO BANCO!!!')
-            os.system('pause')
-
-        else:
-            print('ENTRADA INVÁLIDA, TENTE NOVAMENTE')
-            os.system('pause')
-            os.cls()
-            continue
-
+        controle_main(resposta, cpf, diretorio)
 
 
 #controleMain(resposta_tela_inicio)

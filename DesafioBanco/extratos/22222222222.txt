@@ -1,0 +1,7 @@
+DEPOSITO: 50
+DEPOSITO: 100
+TRANFRÊNCIA: Pago 100 reais para AAA
+TRANFRÊNCIA: Pago 100 reais para AAA
+TRANFRÊNCIA: Pago 100 reais para AAA
+TRANFRENCIA: Recebido 100 reais para AAA
+	.

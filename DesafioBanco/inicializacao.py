@@ -17,5 +17,5 @@ def gerando_diretorio_com_pasta(nome) :
         os.system('cls')
 
     diretorio = f'{dir_path}\\{nome_pasta}'
-    print(diretorio)
+
     return (diretorio)

@@ -6,7 +6,7 @@ def capturar_campo_nome():
     while(True):
         nome = input('NOME COMPLETO: ')
             
-        if(nome == 'sair' or validar_nome(nome) == True):
+        if((nome.lower() == 'voltar' or validar_nome(nome) == True) and len(nome) != 0):
             return nome.upper()
         else:
             print('ENTRADA INVÁLIDA, TENTE NOVAMENTE\n')
@@ -15,8 +15,7 @@ def capturar_campo_senha():
     while(True):
         senha = input('\nSENHA DA CONTA (NO MINIMO 5 E NO MAXIMO 12 CARACTERES): ')
         
-        os.system('pause')
-        if(senha == 'sair' or validar_senha(senha) == True):
+        if(senha.lower() == 'voltar' or validar_senha(senha) == True):
             return senha
         else:
             print('ENTRADA INVÁLIDA, TENTE NOVAMENTE\n')
@@ -25,9 +24,12 @@ def capturar_campo_aniversario():
     while(True):
         aniversario = input('\nDATA DE ANIVERSÁRIO (PADRÃO DD/MM/AAAA): ')
         
+        if (aniversario == 'voltar'):
+            return aniversario
+
         resultado_valida_data = validar_data(aniversario);
 
-        if(aniversario == 'sair' or resultado_valida_data!= False):
+        if(aniversario.lower() == 'voltar' or resultado_valida_data!= False):
             if(resultado_valida_data < 18):
                 print('A IDADE MÍNIMA PARA CADASTRO É DE 18 ANOS')
             else:
@@ -37,9 +39,12 @@ def capturar_campo_aniversario():
 
 def capturar_campo_cpf(diretorio):
     while(True):
-        cpf = input('\nCPF (SOMENTE NÚMEROS): ')    
+        cpf = input('\nCPF (SOMENTE NÚMEROS): ')   
+
+        if (cpf.lower() == 'voltar'):
+                return cpf 
             
-        if(cpf == 'sair' or validar_cpf(cpf) == True ):
+        if(validar_cpf(cpf) == True ):
             if(verificar_ambiguidade_cpf(cpf, diretorio) == False):
                 return cpf
             else:
@@ -51,8 +56,11 @@ def capturar_campo_cpf(diretorio):
 def capturar_campo_email(diretorio):
     while(True):
         email = input('\nEMAIL: ')
+
+        if (email.lower() == 'voltar'):
+                return email 
         
-        if(email == 'sair' or validar_email(email) == True):
+        if(validar_email(email) == True):
             if(verificar_ambiguidade_email(email, diretorio) == True):
                 return email
             else:
@@ -62,13 +70,12 @@ def capturar_campo_email(diretorio):
             print('ENTRADA INVÁLIDA, TENTE NOVAMENTE\n')
 
 def capturar_saldo_inteiro(MAX):
-    print('\nDIGITE "voltar" SE DESEJA CANCELAR A AÇÃO')
 
     while(True):
 
         saldo = input('\nDIGITE O VALOR: ')
 
-        if(saldo == 'voltar' or validar_saldo_inteiro(saldo) == True):
+        if(saldo.lower() == 'voltar' or validar_saldo_inteiro(saldo) == True):
             
             if(saldo == 'voltar'):
                 return saldo
@@ -77,7 +84,7 @@ def capturar_saldo_inteiro(MAX):
                 return saldo
 
             elif(MAX == 5000):
-                print(f"DEPÓSITO MÁXIMO DE {MAX} REAIS POR VEZ")
+                print(f"DEPOSITO MÁXIMO DE {MAX} REAIS POR VEZ")
 
             elif(MAX == 3000):
                 print(f"SAQUE MAXIMO DE {MAX} POR VEZ")
