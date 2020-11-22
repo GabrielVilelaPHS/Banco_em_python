@@ -1,36 +1,36 @@
 from datetime import datetime, date
+import os
 '''
 TELA DE CADASTRO
 '''
+
+def validar_menu(n1,n2):
+    while(True):
+        try:
+            resposta = int (input("\nRESPOSTA: "))
+
+        except (ValueError, AttributeError):
+            print('DIGITE UM NUMERO INTEIRO')
+            os.system('pause')
+            continue
+
+        boleano = str (resposta)
+
+        if(boleano.isnumeric() and (resposta < n1 or resposta > n2 )):
+            print("NUMERO FORA DO INTERVALO")
+            os.system('pause')
+            continue
+        
+        return resposta
+
+
 def validar_nome(nome):
 
     if (nome.isnumeric()):
         return False
 
     return True
-'''
-def tranformar_espaco_underline(nome, tipo):
 
-    copia_nome = '';
-
-    if(tipo == 'espaco'):
-        for caracter in nome:
-            if (caracter == ' '):
-                copia_nome += '_'
-            else: 
-                copia_nome += caracter
-
-    elif(tipo == 'underline'):
-        for caracter in nome:
-            if (caracter == '_'):
-                copia_nome = ' '
-            else: 
-                copia_nome = caracter
-    else:
-        return None
-    
-    return copia_nome.upper()
-'''
 def validar_senha(senha):
 
     if(len(senha) < 5 or len(senha) > 12):
@@ -104,3 +104,4 @@ def validar_saldo_inteiro(saldo):
         return True
     
     return False
+

@@ -1,7 +1,8 @@
-DEPOSITO: 50
-DEPOSITO: 100
-TRANFRÊNCIA: Pago 100 reais para AAA
-TRANFRÊNCIA: Pago 100 reais para AAA
-TRANFRÊNCIA: Pago 100 reais para AAA
-TRANFRENCIA: Recebido 100 reais para AAA
+TRANFRENCIA: Recebido 22 reais de AAA
+	.
+TRANFRENCIA: Recebido 55 reais de AAA
+	.
+TRANFRENCIA: Recebido 77.88 reais de AAA
+	.
+TRANFRENCIA: Recebido 10.45 reais de AAA
 	.

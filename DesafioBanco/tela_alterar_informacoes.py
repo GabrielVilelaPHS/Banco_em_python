@@ -1,5 +1,6 @@
 import os
 from arquivo_alterar_informacoes import extrair_dados, alterar_campo_nome, alterar_campo_senha, alterar_campo_aniversario, alterar_campo_email
+from validacoes import validar_menu
 
 def alterar_informacoes(cpf, diretorio):
 
@@ -24,22 +25,7 @@ def alterar_informacoes(cpf, diretorio):
         print(f'(04) - EMAIL ')
         print(f'(05) - VOLTAR')
 
-
-        while(True):
-            try:
-                resposta = int (input("\nRESPOSTA: "))
-
-            except (ValueError, AttributeError):
-                print('DIGITE UM NUMERO INTEIRO')
-            
-            finally:
-            
-                if(resposta < 1 and resposta >5 ):
-                    print("NUMERO FORA DO INTERVALO")
-                    os.system('pause')
-                    continue
-                
-            break
+        resposta = validar_menu(1, 5)
     
         if(resposta == 5):
             break

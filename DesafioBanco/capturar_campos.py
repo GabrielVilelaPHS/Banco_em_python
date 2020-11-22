@@ -1,6 +1,6 @@
 import os
 from validacoes import validar_nome, validar_senha, validar_data, validar_cpf, validar_email, validar_saldo_inteiro
-from bancoDeDados import verificar_ambiguidade_cpf, verificar_ambiguidade_email
+from arquivo_manipula_dados import verificar_ambiguidade_cpf, verificar_ambiguidade_email
 
 def capturar_campo_nome():
     while(True):
@@ -91,3 +91,33 @@ def capturar_saldo_inteiro(MAX):
         else:
             print('ENTRADA INVÁLIDA, TENTE NOVAMENTE\n')
             continue
+
+def capturar_saldo_float(MAX):
+
+    while(True):
+        try:
+            resposta = input("VALOR: ")
+
+            if(resposta.lower() == "voltar"):
+                return resposta.lower()
+
+            reposta = float(resposta)
+
+        except (ValueError, AttributeError):
+            print('DIGITE UM NUMERO flutuante')
+            os.system('pause')
+            continue
+        
+        parcelas = resposta.split('.')
+        primeira_parcela = parcelas[0]
+
+        if(len(parcelas[1]) > 2):
+            print("LIMITE DE DUAS CASAS APÓS A VIRGULA")
+            os.system('pause')
+        elif(float (primeira_parcela) + float (parcelas[1])/100 > MAX):
+            print("VALOR MAX DE {MAX}")
+            os.system('pause')
+            continue
+        
+        os.system('pause')
+        return resposta

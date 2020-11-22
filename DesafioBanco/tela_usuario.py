@@ -1,33 +1,22 @@
 import os
 
 from tela_operacoes_bancarias import tela_operacoes_bancarias
+from arquivo_alterar_informacoes import extrair_dados
 from tela_configuracoes import tela_configuracoes
+from validacoes import validar_menu
 
 def tela_usuario(cpf, diretorio):
+
+    dicionario = extrair_dados(cpf, diretorio)
+
     while(True):
         os.system('cls')
-        print("--------- BEM VINDO FULANO --------\n")
+        print(f"---------------------- BEM VINDO {dicionario['Nome']} ----------------------\n")
         print("O QUE VOCÊ DESEJA:")
         print("(01) - OPÇÕES BANCARIAS")
         print("(02) - CONFIGURAÇÕES DO USUÁRIO")
 
-
-        while(True):
-            try:
-                resposta = int (input("\nRESPOSTA: "))
-
-            except (ValueError, AttributeError):
-                print('DIGITE UM NUMERO INTEIRO')
-                os.system('pause')
-                continue
-
-            boleano = str (resposta)
-
-            if(boleano.isnumeric() and resposta != 1 and resposta != 2 ):
-                print("NUMERO FORA DO INTERVALO")
-                os.system('pause')
-                continue
-            break
+        resposta = validar_menu(1, 2)
 
         controle_main(resposta, cpf, diretorio)
 

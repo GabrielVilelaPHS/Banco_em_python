@@ -1,14 +1,14 @@
 import os
 
 from capturar_campos import capturar_campo_nome, capturar_campo_senha, capturar_campo_cpf, capturar_campo_aniversario, capturar_campo_email
-from bancoDeDados import cadastrar_usuario
+from arquivo_manipula_dados import cadastrar_usuario
 
 def tela_cadastro(diretorio):
     os.system('cls')
 
     dados_cadastrais = {'Nome' : '' ,'Senha' : '', 'Aniversario' : '' , 'Cpf' : '' , 'Email' :'', 'Saldo' : '0'}
 
-    print('---------CADASTRO-----------\n')
+    print('---------------------- CADASTRO----------------------\n')
 
     print('OBS: DIGITE "voltar" A QUALQUE MOMENTO PARA CANCELAR O CADASTRO\n')
 

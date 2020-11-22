@@ -1,10 +1,11 @@
 import os
 
 from arquivo_alterar_informacoes import extrair_dados
-from capturar_campos import capturar_saldo_inteiro, capturar_campo_cpf, capturar_campo_nome
-from bancoDeDados import verificar_ambiguidade_cpf
+from arquivo_manipula_dados import verificar_ambiguidade_cpf
+from capturar_campos import capturar_saldo_inteiro, capturar_saldo_float, capturar_campo_cpf, capturar_campo_nome
 from validacoes import validar_cpf
 from inicializacao import gerando_diretorio_com_pasta
+
 
 def deposito(cpf, diretorio, **kws):
     
@@ -23,7 +24,7 @@ def deposito(cpf, diretorio, **kws):
     if(valor == 'voltar'):
         return valor
     
-    dicionario['Saldo'] = str (int (dicionario['Saldo']) + int (valor) )
+    dicionario['Saldo'] = str (float (dicionario['Saldo']) + float (valor) )
 
     caminho = f"{diretorio}//{cpf}.txt"
 
@@ -37,32 +38,38 @@ def deposito(cpf, diretorio, **kws):
 
 def saque(cpf, diretorio, **kws):
 
-    valor_automatico = kws.get('valor_automatico')
+    valor_tranferido = kws.get('valor_tranferido')
     
     os.system('cls')
     dicionario = extrair_dados(cpf, diretorio)
 
-    if(int (dicionario['Saldo']) > 0):
+    if(float (dicionario['Saldo']) > 0):
         
-        if(valor_automatico):
-            valor = valor_automatico
+        if(valor_tranferido):
+            valor = valor_tranferido
+
         else:
-            print('\n... DIGITE "sair" PARA CANCELAR O SAQUE...' )
+            print('\n... DIGITE "voltar" PARA CANCELAR O SAQUE...' )
             valor = capturar_saldo_inteiro(MAX =3000)
 
-        if(valor.lower() == 'sair'):
+        if(valor.lower() == 'voltar'):
             return valor
-        
-        dicionario['Saldo'] = str (int (dicionario['Saldo']) - int (valor) )
 
-        if(int (dicionario['Saldo']) >= 0):
+        dicionario['Saldo'] = (float (dicionario['Saldo']) - float (valor) )
+
+        round(dicionario['Saldo'], 2)
+
+        dicionario['Saldo'] = str (dicionario['Saldo'])
+
+
+        if(float (dicionario['Saldo']) >= 0):
 
             caminho = f"{diretorio}//{cpf}.txt"
 
             with open(caminho, 'w') as arquivo:
                 arquivo.write(f"Nome:{dicionario['Nome']}\nSenha:{dicionario['Senha']}\nAniversario:{dicionario['Aniversario']}\nEmail:{dicionario['Email']}\nSaldo:{dicionario['Saldo']}\n")
 
-            if not (valor_automatico):
+            if not (valor_tranferido):
                 registar_historico(f"SAQUE: De {int(valor)} reais\n\t.\n", cpf)
             return valor
 
@@ -74,16 +81,13 @@ def saque(cpf, diretorio, **kws):
 
 def transferencia(cpf, diretorio, **kws):
 
-
-
     os.system('cls')
     print("...CONFIRME OS DADOS DO RECEPTOR...")
-    print('........DIGITE "sair" PARA CANCELAR A TRAANSFERÊNCIA...\n' )
-    os.system('pause')
+    print('........DIGITE "voltar" PARA CANCELAR A TRANSFERÊNCIA...\n' )
 
     receptor_cpf = input('\nCPF (SOMENTE NÚMEROS): ')    
             
-    if(receptor_cpf.lower() == 'sair'):
+    if(receptor_cpf.lower() == 'voltar'):
         return receptor_cpf
 
     elif(validar_cpf(receptor_cpf) ==  False):
@@ -96,21 +100,29 @@ def transferencia(cpf, diretorio, **kws):
 
         receptor_nome = capturar_campo_nome()
 
-        if(receptor_nome.lower() == "sair"):
+        if(receptor_nome.lower() == "voltar"):
             return receptor_nome
 
         if(receptor_dicionario['Nome'] == (receptor_nome.upper())):
-            valor = saque(cpf, diretorio)
+            valor_tranferido = capturar_saldo_float(MAX = 3000)
+
+            string_valor = str (valor_tranferido)
+
+            if(string_valor.lower() == 'voltar'):
+                return string_valor.lower()
+
+            print('entrou \n')
+
+            valor = saque(cpf, diretorio, valor_tranferido = valor_tranferido)
 
             if(valor != True and valor != False):
                 if( deposito(receptor_cpf, diretorio, valor_automatico = valor)):
-                    registar_historico(f"TRANFERENCIA: Pago {int(valor)} reais de {remetente_dicionario['Nome']}\n\t.\n", cpf)
-                    registar_historico(f"TRANFRENCIA: Recebido {int(valor)} reais para {receptor_nome.upper()}\n\t.\n", receptor_cpf)
+                    registar_historico(f"TRANFERENCIA: Pago {float(valor)} reais para {remetente_dicionario['Nome']}\n\t.\n", cpf)
+                    registar_historico(f"TRANFRENCIA: Recebido {float(valor)} reais de {receptor_nome.upper()}\n\t.\n", receptor_cpf)
                     return True
 
     return False
 
-    #os.path.dirname(os.path.abspath("path/to/project/foo.py"))
 
 def extrato(cpf):
 
