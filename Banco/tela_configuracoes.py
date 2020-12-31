@@ -1,5 +1,4 @@
 import os
-import sys
 from tela_alterar_informacoes import alterar_informacoes
 from validacoes import validar_menu
 

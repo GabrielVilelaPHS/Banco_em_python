@@ -104,20 +104,23 @@ def capturar_saldo_float(MAX):
             reposta = float(resposta)
 
         except (ValueError, AttributeError):
-            print('DIGITE UM NUMERO flutuante')
+            print('DIGITE UM NUMERO FLUTUANTE')
             os.system('pause')
             continue
         
-        parcelas = resposta.split('.')
-        primeira_parcela = parcelas[0]
+        for caracter in resposta:
+            if(caracter == '.'):
+                parcelas = resposta.split('.')
+                primeira_parcela = parcelas[0]
 
-        if(len(parcelas[1]) > 2):
-            print("LIMITE DE DUAS CASAS APÓS A VIRGULA")
-            os.system('pause')
-        elif(float (primeira_parcela) + float (parcelas[1])/100 > MAX):
-            print("VALOR MAX DE {MAX}")
-            os.system('pause')
-            continue
-        
-        os.system('pause')
+                if(len(parcelas[1]) > 2):
+                    print("LIMITE DE DUAS CASAS APÓS A VIRGULA")
+                    os.system('pause')
+                elif(float (primeira_parcela) + float (parcelas[1])/100 > MAX):
+                    print("VALOR MAX DE {MAX}")
+                    os.system('pause')
+                    continue
+            
+                os.system('pause')
+
         return resposta

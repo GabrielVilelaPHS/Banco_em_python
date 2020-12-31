@@ -6,3 +6,9 @@ TRANFRENCIA: Recebido 77.88 reais de AAA
 	.
 TRANFRENCIA: Recebido 10.45 reais de AAA
 	.
+TRANFRENCIA: Recebido 300.0 reais de AAA
+	.
+TRANFRENCIA: Recebido 100.0 reais de AAA
+	.
+TRANFRENCIA: Recebido 200.0 reais de AAA
+	.

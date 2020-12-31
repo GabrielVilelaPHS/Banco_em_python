@@ -16,40 +16,24 @@ def extrair_dados(cpf, diretorio):
 
     return dicionario
 
-def alterar_campo_nome(cpf, diretorio):
-
-    dicionario = extrair_dados(cpf, diretorio)
-    nome = capturar_campo_nome()
-
-    dicionario['Nome'] = nome
-
-    caminho = f"{diretorio}//{cpf}.txt"
-
-    with open(caminho, 'w') as arquivo:
-        arquivo.write(f"Nome:{dicionario['Nome']}\nSenha:{dicionario['Senha']}\nAniversario:{dicionario['Aniversario']}\nEmail:{dicionario['Email']}\nSaldo:{dicionario['Saldo']}\n")
-
 def alterar_campo_senha(cpf, diretorio):
     dicionario = extrair_dados(cpf, diretorio)
     senha = capturar_campo_senha()
 
-    os.system('pause')
     dicionario['Senha'] = senha
 
     caminho = f"{diretorio}//{cpf}.txt"
 
-    with open(caminho, 'w') as arquivo:
-        arquivo.write(f"Nome:{dicionario['Nome']}\nSenha:{dicionario['Senha']}\nAniversario:{dicionario['Aniversario']}\nEmail:{dicionario['Email']}\nSaldo:{dicionario['Saldo']}\n")
+    if (senha.lower() == "voltar"):
+        print("\nAÇÃO CANCELADA\n")
 
-def alterar_campo_aniversario(cpf, diretorio):
-    dicionario = extrair_dados(cpf, diretorio)
-    aniversario = capturar_campo_aniversario()
-
-    dicionario['Aniversario'] = aniversario
-
-    caminho = f"{diretorio}//{cpf}.txt"
-
-    with open(caminho, 'w') as arquivo:
-        arquivo.write(f"Nome:{dicionario['Nome']}\nSenha:{dicionario['Senha']}\nAniversario:{dicionario['Aniversario']}\nEmail:{dicionario['Email']}\nSaldo:{dicionario['Saldo']}\n")
+    else:
+        with open(caminho, 'w') as arquivo:
+            arquivo.write(f"Nome:{dicionario['Nome']}\nSenha:{dicionario['Senha']}\nAniversario:{dicionario['Aniversario']}\nEmail:{dicionario['Email']}\nSaldo:{dicionario['Saldo']}\n")
+        
+        print("\nALTERAÇÃO FEITA COM SUCESSO\n")
+    
+    os.system('pause')
 
 def alterar_campo_email(cpf, diretorio):
     dicionario = extrair_dados(cpf, diretorio)
@@ -59,8 +43,16 @@ def alterar_campo_email(cpf, diretorio):
 
     caminho = f"{diretorio}//{cpf}.txt"
 
-    with open(caminho, 'w') as arquivo:
-        arquivo.write(f"Nome:{dicionario['Nome']}\nSenha:{dicionario['Senha']}\nAniversario:{dicionario['Aniversario']}\nEmail:{dicionario['Email']}\nSaldo:{dicionario['Saldo']}\n")
+    if (email.lower() == "voltar"):
+        print("\nAÇÃO CANCELADA\n")
+    else:
+        with open(caminho, 'w') as arquivo:
+            arquivo.write(f"Nome:{dicionario['Nome']}\nSenha:{dicionario['Senha']}\nAniversario:{dicionario['Aniversario']}\nEmail:{dicionario['Email']}\nSaldo:{dicionario['Saldo']}\n")
+            
+        print("\nALTERAÇÃO FEITA COM SUCESSO\n")
+    
+    os.system('pause')
 
+    
 
 
