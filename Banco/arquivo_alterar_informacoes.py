@@ -1,6 +1,9 @@
 import os
 
 from capturar_campos import capturar_campo_nome, capturar_campo_senha, capturar_campo_aniversario, capturar_campo_email
+from verificar_login import verificar_usuario
+
+
 def extrair_dados(cpf, diretorio):
     
     dicionario = {}
@@ -17,42 +20,68 @@ def extrair_dados(cpf, diretorio):
     return dicionario
 
 def alterar_campo_senha(cpf, diretorio):
+
     dicionario = extrair_dados(cpf, diretorio)
+    dicionario['Cpf'] = cpf
+
     senha = capturar_campo_senha()
-
-    dicionario['Senha'] = senha
-
-    caminho = f"{diretorio}//{cpf}.txt"
 
     if (senha.lower() == "voltar"):
         print("\nAÇÃO CANCELADA\n")
+        return senha.lower()
+    
+    teste = verificar_usuario(dicionario) 
+    if (teste == False or teste == "voltar"):
+        return teste
+    
+    dicionario['Senha'] = senha
+    caminho = f"{diretorio}//{cpf}.txt"
 
-    else:
-        with open(caminho, 'w') as arquivo:
-            arquivo.write(f"Nome:{dicionario['Nome']}\nSenha:{dicionario['Senha']}\nAniversario:{dicionario['Aniversario']}\nEmail:{dicionario['Email']}\nSaldo:{dicionario['Saldo']}\n")
+    with open(caminho, 'w') as arquivo:
+        arquivo.write(f"Nome:{dicionario['Nome']}\nSenha:{dicionario['Senha']}\nAniversario:{dicionario['Aniversario']}\nEmail:{dicionario['Email']}\nSaldo:{dicionario['Saldo']}\n")
         
-        print("\nALTERAÇÃO FEITA COM SUCESSO\n")
+    print("\nALTERAÇÃO FEITA COM SUCESSO\n")
     
     os.system('pause')
 
 def alterar_campo_email(cpf, diretorio):
+
     dicionario = extrair_dados(cpf, diretorio)
+    dicionario['Cpf'] = cpf
+
     email = capturar_campo_email(diretorio)
-
-    dicionario['Email'] = email
-
-    caminho = f"{diretorio}//{cpf}.txt"
 
     if (email.lower() == "voltar"):
         print("\nAÇÃO CANCELADA\n")
-    else:
-        with open(caminho, 'w') as arquivo:
-            arquivo.write(f"Nome:{dicionario['Nome']}\nSenha:{dicionario['Senha']}\nAniversario:{dicionario['Aniversario']}\nEmail:{dicionario['Email']}\nSaldo:{dicionario['Saldo']}\n")
+        return email.lower()
+
+    if (verificar_usuario(dicionario) == False):
+        return False
+
+    dicionario['Email'] = email
+    caminho = f"{diretorio}//{cpf}.txt"
+
+    with open(caminho, 'w') as arquivo:
+        arquivo.write(f"Nome:{dicionario['Nome']}\nSenha:{dicionario['Senha']}\nAniversario:{dicionario['Aniversario']}\nEmail:{dicionario['Email']}\nSaldo:{dicionario['Saldo']}\n")
             
-        print("\nALTERAÇÃO FEITA COM SUCESSO\n")
+    print("\nALTERAÇÃO FEITA COM SUCESSO\n")
     
     os.system('pause')
 
+
+def excluir_conta(cpf, diretorio):
+
+    nome = f"{cpf}.txt"
+    conta = f"{diretorio}\\{nome}"
+    os.remove(conta)
+
+    pastaMain = os.path.dirname(diretorio)
+    pastaExtrato = f"{pastaMain}\\extratos"
+
+    lista_arquivos = os.listdir(pastaExtrato)
     
+    for arquivo in lista_arquivos:
+        if(arquivo == nome):
+            os.remove(f"{pastaExtrato}\\{nome}")
 
 

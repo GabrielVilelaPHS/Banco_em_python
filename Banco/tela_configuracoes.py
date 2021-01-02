@@ -1,5 +1,6 @@
 import os
 from tela_alterar_informacoes import alterar_informacoes
+from arquivo_alterar_informacoes import excluir_conta
 from validacoes import validar_menu
 
 def tela_configuracoes(cpf, diretorio):
@@ -8,21 +9,25 @@ def tela_configuracoes(cpf, diretorio):
         print("---------------------- CONFIGURAÇÕES DE USUÁRIO ----------------------\n")
         print("O QUE VOCÊ DESEJA:")
         print("(01) - ALTERAR INFORMAÇÕES PESSOAIS")
-        print("(02) - SAIR DA CONTA")
-        print("(03) - VOLTAR")
+        print("(02) - APAGAR CONTA")
+        print("(03) - SAIR DA CONTA")
+        print("(04) - VOLTAR")
 
-        resposta = validar_menu(1, 3)
+        resposta = validar_menu(1, 4)
         
         controle_main(resposta, cpf, diretorio)
 
-        if(resposta == 3):
+        if(resposta == 4):
             break
 
 def controle_main(resposta, cpf, diretorio):
 
     if (resposta == 1):
         alterar_informacoes(cpf, diretorio)
-        
+    
     elif (resposta == 2):
+        excluir_conta(cpf, diretorio)
+
+    elif (resposta == 3):
         exit(0)
     

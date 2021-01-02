@@ -75,34 +75,3 @@ def extrair_email(conteudo_arquivo):
 
     return False
 
-def verificar_login(cpf, senha, diretorio):
-
-    copia_senha = senha
-
-    if(verificar_ambiguidade_cpf(cpf, diretorio) == True):
-
-        lista_item = []
-
-        nome_arquivo = cpf + ".txt"
-        caminho = f"{diretorio}\\{nome_arquivo}"
-
-        arquivo = open(caminho, 'r')
-        conteudo_arquivo = arquivo.readlines()
-        arquivo.close()
-
-        
-        for item in conteudo_arquivo:
-            lista_item = item.split(':')
-
-            if(lista_item[0] == "Senha"):
-
-                lista_senha = lista_item[1].split("\n")
-                auxiliar_senha = lista_senha[0]
-                
-                if(copia_senha == auxiliar_senha):
-                    return True
-                else:
-                    return False
-    
-    else:
-        return False

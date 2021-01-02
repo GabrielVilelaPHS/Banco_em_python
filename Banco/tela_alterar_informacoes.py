@@ -8,6 +8,7 @@ def alterar_informacoes(cpf, diretorio):
         os.system('cls')
 
         dicionario = extrair_dados(cpf, diretorio)
+        #print(dicionario)
 
         print('--------- CONFIGURAÇÕES DE USUÁRIO --------\n')
 
@@ -33,7 +34,11 @@ def controle_logico(resposta, cpf, diretorio):
     print("\nDigite 'voltar' se deseja cancelar a ação")
 
     if(resposta == 1):
-        alterar_campo_senha(cpf, diretorio)
+        feedback = alterar_campo_senha(cpf, diretorio)
 
     elif(resposta == 2):
-        alterar_campo_email(cpf, diretorio)
+        feedback = alterar_campo_email(cpf, diretorio)
+
+    if(feedback == False):
+        print("\nOCORREU ERRO NA VALIDAÇÃO DE USUÁRIO\n")
+        os.system('pause')
