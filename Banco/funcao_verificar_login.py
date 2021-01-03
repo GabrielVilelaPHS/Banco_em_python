@@ -16,7 +16,7 @@ def coletar_dados_login():
             print('ENTRADA INVÁLIDA, TENTE NOVAMENTE\n')
 
     if(cpf == 'voltar'):
-        return False
+        return cpf
 
     while(True):
         senha = input('\nSENHA DA CONTA (NO MINIMO 5 E NO MAXIMO 12 CARACTERES): ')
@@ -27,7 +27,7 @@ def coletar_dados_login():
             print('ENTRADA INVÁLIDA, TENTE NOVAMENTE\n')
 
     if(senha == 'voltar'):
-        return False
+        return cpf
 
     dicionario['Cpf'] = cpf
     dicionario['Senha'] = senha
@@ -78,11 +78,8 @@ def verificar_usuario(dicionario):
     if(dados == "voltar"):
         return dados
 
+
     if(dicionario['Cpf'] == dados['Cpf'] and dicionario['Senha'] == dados['Senha']):
         return True
     else:
         return False
-
-
-
-

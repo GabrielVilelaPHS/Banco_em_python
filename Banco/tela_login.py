@@ -14,8 +14,9 @@ def tela_login(diretorio):
 
         dados = coletar_dados_login()
         
-        if(dados == False ):
-            break
+        if(type(dados) == str):
+            if(dados.lower() == "voltar" ):
+                break
 
         resposta = verificar_login(dados, diretorio)
     

@@ -27,10 +27,11 @@ def controle_main(resposta, cpf, diretorio):
     if (resposta == 1):
         confirmacao = saque(cpf, diretorio)
         
-        if(confirmacao.isnumeric()):
+        if(type(confirmacao) == bool):
+            if(confirmacao == False):
+                print("...DESCULPE, ALGO DEU ERRADO...\n");
+        elif(confirmacao.isnumeric()):
             print("...SAQUE FEITO COM SUCESSO")
-        elif(confirmacao == False):
-            print("...DESCULPE, ALGO DEU ERRADO...\n...VERIFIQUE SEU SALDO PARA VER SE TEM SALDO SUFICIENTE...")
         
         os.system('pause')
     

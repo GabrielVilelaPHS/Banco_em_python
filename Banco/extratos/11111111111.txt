@@ -14,3 +14,7 @@ TRANFERENCIA: Pago 100.0 reais para GABRIEL VILELA
 	.
 TRANFERENCIA: Pago 200.0 reais para GABRIEL VILELA
 	.
+SAQUE: De 300 reais
+	.
+SAQUE: De 100 reais
+	.

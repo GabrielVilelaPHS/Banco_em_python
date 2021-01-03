@@ -4,6 +4,7 @@ from arquivo_alterar_informacoes import extrair_dados
 from arquivo_manipula_dados import verificar_ambiguidade_cpf
 from capturar_campos import capturar_saldo_inteiro, capturar_saldo_float, capturar_campo_cpf, capturar_campo_nome
 from validacoes import validar_cpf
+from funcao_verificar_login import verificar_usuario
 from inicializacao import gerando_diretorio_com_pasta
 
 
@@ -38,10 +39,11 @@ def deposito(cpf, diretorio, **kws):
 
 def saque(cpf, diretorio, **kws):
 
-    valor_tranferido = kws.get('valor_tranferido')
+    valor_tranferido = kws.get('valor_tranferido')    
     
     os.system('cls')
     dicionario = extrair_dados(cpf, diretorio)
+    dicionario['Cpf'] = cpf
 
     if(float (dicionario['Saldo']) > 0):
         
@@ -51,6 +53,11 @@ def saque(cpf, diretorio, **kws):
         else:
             print('\n... DIGITE "voltar" PARA CANCELAR O SAQUE...' )
             valor = capturar_saldo_inteiro(MAX =3000)
+
+            teste = verificar_usuario(dicionario)
+
+            if (teste == False or teste == "voltar"):
+                return teste
 
         if(valor.lower() == 'voltar'):
             return valor
