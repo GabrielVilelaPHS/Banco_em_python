@@ -1,5 +1,0 @@
-Nome:BBB
-Senha:12345
-Aniversario:11/11/2001
-Email:garielvilela@gmail.com
-Saldo:100.0

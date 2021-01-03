@@ -1,7 +1,7 @@
 import os
 
 from capturar_campos import capturar_campo_nome, capturar_campo_senha, capturar_campo_aniversario, capturar_campo_email
-from verificar_login import verificar_usuario
+from funcao_verificar_login import verificar_usuario
 
 
 def extrair_dados(cpf, diretorio):
@@ -71,8 +71,15 @@ def alterar_campo_email(cpf, diretorio):
 
 def excluir_conta(cpf, diretorio):
 
+    dicionario = extrair_dados(cpf, diretorio)
+    dicionario['Cpf'] = cpf
+
     nome = f"{cpf}.txt"
     conta = f"{diretorio}\\{nome}"
+
+    if (verificar_usuario(dicionario) == False):
+        return False
+
     os.remove(conta)
 
     pastaMain = os.path.dirname(diretorio)
@@ -83,5 +90,9 @@ def excluir_conta(cpf, diretorio):
     for arquivo in lista_arquivos:
         if(arquivo == nome):
             os.remove(f"{pastaExtrato}\\{nome}")
+            
+    print("\nCONTA APAGADA COM SUCESSO\n")
+    
+    os.system('pause')
 
 

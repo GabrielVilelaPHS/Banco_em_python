@@ -11,7 +11,15 @@ def controle_main(tela_inicio, diretorio):
         tela_login(diretorio)
 
     elif (tela_inicio == 2):
-        tela_cadastro(diretorio)
+        retorno = tela_cadastro(diretorio)
+
+        if(retorno == True):
+            print("\nCADASTRO REALIZADO COM SUCESSO\n")
+            os.system('pause')
+
+        elif(retorno == False):
+            print("\nDESCULPE, HOUVE ERRO NA CRIAÇÃO DO USUÁRIO\nTENTE NOVAMENTE...\n")
+            os.system('pause')
 
     elif (tela_inicio == 3):
         exit(0)

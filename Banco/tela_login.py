@@ -1,6 +1,6 @@
 
 import os
-from verificar_login import coletar_dados_login, verificar_login
+from funcao_verificar_login import coletar_dados_login, verificar_login
 from tela_usuario import tela_usuario
 
 def tela_login(diretorio):
@@ -13,6 +13,9 @@ def tela_login(diretorio):
         dados ={}
 
         dados = coletar_dados_login()
+        
+        if(dados == False ):
+            break
 
         resposta = verificar_login(dados, diretorio)
     

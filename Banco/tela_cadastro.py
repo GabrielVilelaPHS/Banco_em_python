@@ -11,35 +11,36 @@ def tela_cadastro(diretorio):
     print('---------------------- CADASTRO----------------------\n')
 
     print('OBS: DIGITE "voltar" A QUALQUE MOMENTO PARA CANCELAR O CADASTRO\n')
-
+    
     nome = capturar_campo_nome()
     
     if(nome.lower() == 'voltar'):
-        return
+        return nome.lower()
 
 
     senha = capturar_campo_senha()
 
     if(senha == 'voltar'):
-        return 
+        return senha.lower()
+        
 
 
     aniversario = capturar_campo_aniversario()
 
     if(aniversario == 'voltar'):
-        return
+        return aniversario.lower()
 
 
     cpf = capturar_campo_cpf(diretorio)
 
     if(cpf == 'voltar'):
-        return 
+        return cpf.lower()
 
 
     email = capturar_campo_email(diretorio)
 
     if(email == 'voltar'):
-        return
+        return email.lower()
 
     dados_cadastrais['Nome'] = nome;
     dados_cadastrais['Senha'] = senha;
@@ -47,7 +48,8 @@ def tela_cadastro(diretorio):
     dados_cadastrais['Cpf'] = cpf;
     dados_cadastrais['Email'] = email;
 
-    print(f"nome: {dados_cadastrais['Nome']}\n aniversario: {dados_cadastrais['Aniversario']} \n cpf: {dados_cadastrais['Cpf']} \n email: {dados_cadastrais['Email']}")
+    print(f"\nnome: {dados_cadastrais['Nome']} \naniversario: {dados_cadastrais['Aniversario']} \ncpf: {dados_cadastrais['Cpf']} \nemail: {dados_cadastrais['Email']}")
 
-    cadastrar_usuario(diretorio, dados_cadastrais)
+    return cadastrar_usuario(diretorio, dados_cadastrais)
+
 

@@ -1,16 +1,20 @@
 import os
+from pathlib import Path
 
 def cadastrar_usuario(diretorio, dados):
 
     nome_arquivo = dados['Cpf'] + ".txt"
-    caminho = f"{diretorio}\\{dados['Cpf']}.txt"
+    caminho = f"{diretorio}\\{nome_arquivo}.txt"
+    
     arquivo = open(caminho,'w')    
 
     conteudo_arquivo = f"Nome:{dados['Nome']}\nSenha:{dados['Senha']}\nAniversario:{dados['Aniversario']}\nEmail:{dados['Email']}\nSaldo:{dados['Saldo']}\n"
 
     arquivo.write(conteudo_arquivo)
-
     arquivo.close()
+
+    return os.path.exists(caminho)
+
 
 def verificar_ambiguidade_cpf(campo, diretorio):
 

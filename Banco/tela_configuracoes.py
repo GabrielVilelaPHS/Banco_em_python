@@ -27,7 +27,9 @@ def controle_main(resposta, cpf, diretorio):
     
     elif (resposta == 2):
         excluir_conta(cpf, diretorio)
+        exit(0)
 
     elif (resposta == 3):
         exit(0)
+
     

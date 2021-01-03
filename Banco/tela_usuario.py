@@ -28,3 +28,4 @@ def controle_main(resposta, cpf, diretorio):
 
     elif (resposta == 2):
         tela_configuracoes(cpf, diretorio)
+        
